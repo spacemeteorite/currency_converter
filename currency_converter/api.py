@@ -42,7 +42,7 @@ def get_exchange_rates(base: str='EUR',
     """
     print('try connecting api')
 
-    response = requests.get(f"https://api.vatcomply.com/rates?base={base}")
+    response = requests.get(f"https://api.vatcomply.com/rates?base={base}", timeout=5)
     response_dict = json.loads(response.text)
 
     print('response got')

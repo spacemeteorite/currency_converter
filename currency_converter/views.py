@@ -73,7 +73,7 @@ class App(tk.Tk):
 
 
     def trace_amount(self, *args) -> None:
-        print(self.var_from_amount.get())
+        # print(self.var_from_amount.get())
         self.handle_convert()
 
     def handle_convert(self, event: tk.Event=None) -> None:
@@ -121,7 +121,10 @@ class App(tk.Tk):
         except requests.exceptions.HTTPError as error:
             print(error)
             messagebox.showerror('网络错误', '无法连接至API。')            
-        
+        except requests.exceptions.ReadTimeout as error:
+            print(error)
+            messagebox.showerror('网络错误', '延迟过高，无法连接至api')
+
         self.handle_convert()
 
         self.mainloop()
